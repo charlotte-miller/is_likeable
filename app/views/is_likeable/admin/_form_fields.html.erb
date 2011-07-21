@@ -1,0 +1,36 @@
+<style type="text/css" media="screen">
+  /* Still working on serving assets through a Rails Engine */
+  .fb_like_data{
+   border:2px solid #5388D8; 
+   padding:5px;
+   -moz-border-radius:5px;
+   -webkit-border-radius:5px;
+  }
+  /* Still working on serving assets through a Rails Engine */
+</style>
+<div class="fb_like_data">
+  <h3>For Facebook</h3>
+  <% f.object.fb_like || f.object.build_fb_like %>
+  <%= f.fields_for :fb_like do |fb| %>
+    <div class="field group">
+      <%= fb.label :redirect_to_url %><br />
+      <%= fb.text_field :redirect_to_url %>
+    </div>
+    <div class="field group">
+      <%= fb.label :title %><br />
+      <%= fb.text_field :title %>
+    </div>
+    <div class="field group">
+      <%= fb.label :description %><br />
+      <%= fb.text_field :description %>
+    </div>
+    <div class="field group">
+      <%= fb.label :image %><br />
+      <%= fb.paperclip_field :image %>
+    </div>
+    <div class="field group">
+      <%= fb.label :youtube_id, 'Youtube ID or Link (optional)' %><br />
+      <%= fb.text_field :youtube_id %>
+    </div>
+  <% end -%>
+</div>

@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <!-- <meta http-equiv=Refresh content="0; url=<%= @fb_data.redirect_to_url %>"> -->
+    <title><%= title = @fb_data.title %></title>
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="<%= title %>" />
+    <meta property="og:image" content="http://<%= AppConfig[:application_domain]+@fb_data.image.url(:for_status) %>" />
+    <meta property="og:site_name" content="<%= AppConfig[:app_name] %>" />
+    <meta property="og:description" content="<%= description = @fb_data.description %>" />
+    <meta name="description" content="<%= description %>" />
+    
+    <% unless @fb_data.youtube_id.blank? %>
+      <meta property="og:video" content="<%= YoutubeApi.swf_link(@fb_data.youtube_id, :autoplay => true, :showinfo => false) %>"/>  
+      <meta name="video_height" content="360" /> 
+      <meta name="video_width" content="640" /> 
+      <meta name="video_type" content="application/x-shockwave-flash" />
+    <% end -%>
+    
+    <meta property="fb:admins" content=""/>
+    <!-- <meta property="fb:app_id" content="<%=AppConfig[:fb_app_id]%>"/> -->
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      // Incase your app is hosted in an iFrame (Facebook Apps)
+      window.top.location= '<%= raw @fb_data.redirect_to_url %>';
+    </script>
+  </body>
+</html>

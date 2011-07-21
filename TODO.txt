@@ -1,0 +1,6 @@
+release_blockers:
+  - gemspec
+  - tests
+  
+some_day_maybe:
+  - setup generator
